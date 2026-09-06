@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Три храбрых рыцаря</title>
+  <title>⚔️ Три храбрых рыцаря ⚔️</title>
 
   <style>
     * {
@@ -15,231 +15,332 @@
     body {
       margin: 0;
       min-height: 100vh;
+      color: #f0dfb5;
+      font-family: Georgia, "Times New Roman", serif;
+
+      background:
+        radial-gradient(circle at 50% 30%, #59452d 0%, #211810 45%, #090706 100%);
+
+      overflow-x: hidden;
+    }
+
+    /* Каменная стена */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.25;
+
+      background-image:
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px);
+
+      background-size: 70px 45px;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 45px 15px;
+    }
+
+    .tavern {
+      width: min(950px, 100%);
+      text-align: center;
+      padding: 35px 25px 45px;
+
+      background:
+        linear-gradient(
+          rgba(25, 16, 10, .88),
+          rgba(14, 10, 7, .94)
+        );
+
+      border: 4px solid #704c27;
+      border-radius: 14px;
+
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.8),
+        inset 0 0 40px rgba(0,0,0,.7);
+    }
+
+    /* Верхняя вывеска */
+    .sign {
+      display: inline-block;
+      padding: 12px 30px;
+      margin-bottom: 25px;
+
+      background: linear-gradient(#754b24, #3b2110);
+      border: 3px solid #a77a42;
+      border-radius: 8px;
+
+      font-size: 16px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      box-shadow: 0 7px 0 #1b0e07;
+    }
+
+    .sign span {
+      color: #ffd87b;
+    }
+
+    /* Щит */
+    .shield {
+      width: 145px;
+      height: 165px;
+      margin: 5px auto 20px;
+
       display: flex;
       justify-content: center;
       align-items: center;
 
       background:
-        radial-gradient(circle at center, rgba(80, 80, 80, 0.35), transparent 60%),
-        linear-gradient(135deg, #111111, #252525 50%, #0b0b0b);
+        linear-gradient(145deg, #9b7c4c, #342a1c 50%, #15120e);
 
-      color: #e8dcc2;
-      font-family: Georgia, "Times New Roman", serif;
-      overflow-x: hidden;
-    }
-
-    /* Каменные декоративные полосы */
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      left: 0;
-      width: 100%;
-      height: 18px;
-      background: #080808;
-      border-top: 2px solid #8d7345;
-      border-bottom: 2px solid #8d7345;
-    }
-
-    body::before {
-      top: 0;
-    }
-
-    body::after {
-      bottom: 0;
-    }
-
-    .castle {
-      width: min(900px, 90%);
-      text-align: center;
-      padding: 40px 25px;
-    }
-
-    .shield {
-      width: 100px;
-      height: 120px;
-      margin: 0 auto 20px;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      background: linear-gradient(145deg, #343434, #111111);
-      border: 3px solid #b3945c;
+      border: 5px solid #c8a45f;
 
       clip-path: polygon(
-        50% 0%,
-        92% 15%,
-        92% 60%,
+        50% 0,
+        93% 12%,
+        93% 62%,
         75% 82%,
         50% 100%,
         25% 82%,
-        8% 60%,
-        8% 15%
+        7% 62%,
+        7% 12%
       );
 
-      font-size: 48px;
-      box-shadow: 0 0 25px rgba(0,0,0,0.8);
+      font-size: 58px;
+
+      box-shadow:
+        0 12px 25px rgba(0,0,0,.8);
     }
 
     h1 {
-      margin: 10px 0;
-      font-size: clamp(32px, 6vw, 58px);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #d4b878;
+      margin: 5px 0;
+
+      font-size: clamp(34px, 7vw, 64px);
+      color: #e5bd6a;
 
       text-shadow:
-        2px 2px 0 #000,
-        0 0 15px rgba(212,184,120,0.25);
+        3px 4px 0 #1b1008,
+        0 0 20px rgba(229,189,106,.25);
     }
 
     .subtitle {
-      font-size: 18px;
-      color: #aaa08c;
-      margin-bottom: 35px;
+      margin: 8px 0 25px;
+
+      color: #c8b08a;
+      font-size: 19px;
       font-style: italic;
     }
 
-    .ornament {
-      color: #a88b52;
-      font-size: 25px;
-      margin: 15px 0;
+    .knights {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin: 25px auto 35px;
     }
 
-    /* Кнопка */
-    .open-button {
+    .knight {
+      padding: 10px 15px;
+
+      background: rgba(76, 49, 26, .65);
+      border: 1px solid #886139;
+      border-radius: 8px;
+
+      font-size: 16px;
+    }
+
+    /* Крестовые мечи */
+    .swords {
+      font-size: 42px;
+      margin: 5px 0 25px;
+
+      transform: rotate(-3deg);
+      text-shadow: 3px 3px 0 #000;
+    }
+
+    /* Главная кнопка */
+    .quest-button {
       position: relative;
 
-      padding: 18px 50px;
-      min-width: 240px;
+      padding: 20px 35px;
+      width: min(420px, 90%);
 
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 22px;
+      color: #ffe7a7;
+      background: linear-gradient(
+        145deg,
+        #80572d,
+        #432714
+      );
+
+      border: 3px solid #c79b57;
+      border-radius: 9px;
+
+      font-family: Georgia, serif;
+      font-size: 20px;
       font-weight: bold;
-      letter-spacing: 2px;
-
-      color: #ead9b5;
-      background: linear-gradient(145deg, #403522, #17130d);
-
-      border: 2px solid #b3945c;
-      border-radius: 5px;
+      letter-spacing: 1px;
 
       cursor: pointer;
 
       box-shadow:
-        0 6px 0 #0b0b0b,
-        0 0 25px rgba(179,148,92,0.18);
+        0 8px 0 #1b0e07,
+        0 0 25px rgba(199,155,87,.18);
 
-      transition: all 0.2s ease;
+      transition: .2s;
     }
 
-    .open-button:hover {
-      transform: translateY(-3px);
+    .quest-button:hover {
+      transform: translateY(-4px);
+
+      background: linear-gradient(
+        145deg,
+        #976b39,
+        #583417
+      );
 
       box-shadow:
-        0 9px 0 #0b0b0b,
-        0 0 35px rgba(179,148,92,0.35);
-
-      background: linear-gradient(145deg, #55452a, #211a10);
+        0 12px 0 #1b0e07,
+        0 0 35px rgba(255,201,103,.35);
     }
 
-    .open-button:active {
-      transform: translateY(4px);
-
-      box-shadow:
-        0 2px 0 #0b0b0b,
-        0 0 20px rgba(179,148,92,0.2);
+    .quest-button:active {
+      transform: translateY(5px);
+      box-shadow: 0 3px 0 #1b0e07;
     }
 
-    /* История */
+    /* Пергамент */
     .story {
-      max-width: 760px;
+      width: min(780px, 100%);
       margin: 35px auto 0;
 
-      padding: 30px;
+      padding: 35px 30px;
+
+      color: #342312;
 
       background:
-        linear-gradient(
-          rgba(24, 21, 16, 0.96),
-          rgba(18, 16, 12, 0.96)
+        radial-gradient(
+          ellipse at center,
+          #f1d99d 0%,
+          #d5b777 75%,
+          #a27a42 100%
         );
 
-      border: 1px solid #8d7345;
-      border-radius: 6px;
+      border: 8px solid #58381c;
+      border-radius: 4px;
 
       text-align: left;
 
       box-shadow:
-        0 0 30px rgba(0,0,0,0.65),
-        inset 0 0 25px rgba(179,148,92,0.04);
+        0 15px 35px rgba(0,0,0,.75),
+        inset 0 0 30px rgba(75,43,13,.3);
 
       opacity: 0;
-      transform: translateY(-15px) scale(0.98);
-
       max-height: 0;
       overflow: hidden;
 
+      transform: scale(.95) rotateX(-8deg);
+
       transition:
-        opacity 0.6s ease,
-        transform 0.6s ease,
-        max-height 0.8s ease;
+        max-height 1s ease,
+        opacity .7s ease,
+        transform .7s ease;
     }
 
     .story.show {
       opacity: 1;
-      transform: translateY(0) scale(1);
-      max-height: 1000px;
+      max-height: 1200px;
+      transform: scale(1) rotateX(0);
+    }
+
+    .story-title {
+      text-align: center;
+      font-size: 27px;
+      font-weight: bold;
+      margin-bottom: 25px;
+
+      color: #4a2d13;
     }
 
     .story p {
-      margin: 0 0 20px;
       font-size: 19px;
-      line-height: 1.8;
+      line-height: 1.75;
+      margin: 0 0 20px;
     }
 
     .story p:last-child {
       margin-bottom: 0;
     }
 
-    .story::before {
-      content: "✦";
-      display: block;
+    .beer {
       text-align: center;
-      color: #b3945c;
-      font-size: 25px;
-      margin-bottom: 20px;
+      font-size: 38px;
+      margin-top: 25px;
     }
 
     .footer {
-      margin-top: 35px;
-      color: #716b60;
+      margin-top: 30px;
+      color: #887257;
       font-size: 14px;
     }
 
+    /* Факелы */
+    .torch {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 50px;
+      animation: flame 1.5s infinite alternate ease-in-out;
+      z-index: -1;
+    }
+
+    .torch.left {
+      left: 20px;
+    }
+
+    .torch.right {
+      right: 20px;
+    }
+
+    @keyframes flame {
+      from {
+        transform: translateY(-50%) scale(1);
+        filter: brightness(.8);
+      }
+
+      to {
+        transform: translateY(-50%) scale(1.12);
+        filter: brightness(1.3);
+      }
+    }
+
     @media (max-width: 600px) {
-      .castle {
-        padding: 30px 10px;
+      .tavern {
+        padding: 25px 15px 35px;
       }
 
       .shield {
-        width: 80px;
-        height: 95px;
-        font-size: 38px;
+        width: 110px;
+        height: 130px;
+        font-size: 45px;
       }
 
       .story {
-        padding: 22px;
+        padding: 25px 20px;
       }
 
       .story p {
         font-size: 17px;
-        line-height: 1.7;
       }
 
-      .open-button {
-        min-width: 210px;
-        padding: 16px 30px;
+      .torch {
+        display: none;
       }
     }
   </style>
@@ -247,69 +348,98 @@
 
 <body>
 
-  <main class="castle">
+  <div class="torch left">🔥</div>
+  <div class="torch right">🔥</div>
 
-    <div class="shield">⚔️</div>
+  <div class="page">
 
-    <div class="ornament">— ✦ —</div>
+    <main class="tavern">
 
-    <h1>Три храбрых рыцаря</h1>
+      <div class="sign">
+        🍺 ТАВЕРНА <span>«ТРИ РЫЦАРЯ»</span> 🍺
+      </div>
 
-    <div class="subtitle">
-      Легенда только начинается...
-    </div>
+      <div class="shield">
+        ⚔️
+      </div>
 
-    <button class="open-button" onclick="openStory()">
-      ⚔ ОТКРЫТЬ ИСТОРИЮ ⚔
-    </button>
+      <div class="swords">
+        ⚔️ 🛡️ ⚔️
+      </div>
 
-    <section id="story" class="story">
+      <h1>Три храбрых рыцаря</h1>
 
-      <p>
-        Было три храбрых рыцаря — Александр Ворчащий,
-        Назар Хихикающий и Наджаф Тусующийся.
-      </p>
+      <div class="subtitle">
+        Одна миссия. Три рыцаря. И никаких планов.
+      </div>
 
-      <p>
-        Каждый день рыцари храбро сражались,
-        побеждая врагов.
-      </p>
+      <div class="knights">
+        <div class="knight">⚔️ Александр Ворчащий</div>
+        <div class="knight">🍺 Назар Хихикающий</div>
+        <div class="knight">🛡️ Наджаф Тусующийся</div>
+      </div>
 
-      <p>
-        А после сражений они возвращались в свои покои
-        и отправлялись отдыхать.
-      </p>
+      <button class="quest-button" onclick="openStory()">
+        ⚔️ ОТКРЫТЬ ЗАДАНИЕ ⚔️
+      </button>
 
-      <p>
-        Но однажды, открыв глаза после хорошего сна,
-        рыцари увидели перед собой задание, которое
-        поодиночке им было не решить — только вместе.
-      </p>
+      <section id="story" class="story">
 
-      <p>
-        Поэтому собрались рыцари и стали гадать,
-        куда же им держать путь.
-      </p>
+        <div class="story-title">
+          📜 Легенда начинается...
+        </div>
 
-    </section>
+        <p>
+          Было три храбрых рыцаря — Александр Ворчащий,
+          Назар Хихикающий и Наджаф Тусующийся.
+        </p>
 
-    <div class="footer">
-      ✦ Продолжение следует... ✦
-    </div>
+        <p>
+          Каждый день рыцари храбро сражались,
+          побеждая врагов.
+        </p>
 
-  </main>
+        <p>
+          А после сражений они возвращались в свои покои
+          и отправлялись отдыхать.
+        </p>
+
+        <p>
+          Но однажды, открыв глаза после хорошего сна,
+          рыцари увидели перед собой задание, которое
+          поодиночке им было не решить — только вместе.
+        </p>
+
+        <p>
+          Поэтому собрались рыцари и стали гадать,
+          куда же им держать путь.
+        </p>
+
+        <div class="beer">
+          🍺 ⚔️ 🍺
+        </div>
+
+      </section>
+
+      <div class="footer">
+        ✦ Продолжение следует... ✦
+      </div>
+
+    </main>
+
+  </div>
 
   <script>
     function openStory() {
       const story = document.getElementById("story");
-      const button = document.querySelector(".open-button");
+      const button = document.querySelector(".quest-button");
 
       story.classList.toggle("show");
 
       if (story.classList.contains("show")) {
-        button.innerHTML = "⚔ ЗАКРЫТЬ ИСТОРИЮ ⚔";
+        button.innerHTML = "📜 ЗАКРЫТЬ ЗАДАНИЕ 📜";
       } else {
-        button.innerHTML = "⚔ ОТКРЫТЬ ИСТОРИЮ ⚔";
+        button.innerHTML = "⚔️ ОТКРЫТЬ ЗАДАНИЕ ⚔️";
       }
     }
   </script>
