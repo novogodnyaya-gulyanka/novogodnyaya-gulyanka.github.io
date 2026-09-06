@@ -1,0 +1,319 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Три храбрых рыцаря</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background:
+        radial-gradient(circle at center, rgba(80, 80, 80, 0.35), transparent 60%),
+        linear-gradient(135deg, #111111, #252525 50%, #0b0b0b);
+
+      color: #e8dcc2;
+      font-family: Georgia, "Times New Roman", serif;
+      overflow-x: hidden;
+    }
+
+    /* Каменные декоративные полосы */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      left: 0;
+      width: 100%;
+      height: 18px;
+      background: #080808;
+      border-top: 2px solid #8d7345;
+      border-bottom: 2px solid #8d7345;
+    }
+
+    body::before {
+      top: 0;
+    }
+
+    body::after {
+      bottom: 0;
+    }
+
+    .castle {
+      width: min(900px, 90%);
+      text-align: center;
+      padding: 40px 25px;
+    }
+
+    .shield {
+      width: 100px;
+      height: 120px;
+      margin: 0 auto 20px;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      background: linear-gradient(145deg, #343434, #111111);
+      border: 3px solid #b3945c;
+
+      clip-path: polygon(
+        50% 0%,
+        92% 15%,
+        92% 60%,
+        75% 82%,
+        50% 100%,
+        25% 82%,
+        8% 60%,
+        8% 15%
+      );
+
+      font-size: 48px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    }
+
+    h1 {
+      margin: 10px 0;
+      font-size: clamp(32px, 6vw, 58px);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #d4b878;
+
+      text-shadow:
+        2px 2px 0 #000,
+        0 0 15px rgba(212,184,120,0.25);
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #aaa08c;
+      margin-bottom: 35px;
+      font-style: italic;
+    }
+
+    .ornament {
+      color: #a88b52;
+      font-size: 25px;
+      margin: 15px 0;
+    }
+
+    /* Кнопка */
+    .open-button {
+      position: relative;
+
+      padding: 18px 50px;
+      min-width: 240px;
+
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      font-weight: bold;
+      letter-spacing: 2px;
+
+      color: #ead9b5;
+      background: linear-gradient(145deg, #403522, #17130d);
+
+      border: 2px solid #b3945c;
+      border-radius: 5px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 6px 0 #0b0b0b,
+        0 0 25px rgba(179,148,92,0.18);
+
+      transition: all 0.2s ease;
+    }
+
+    .open-button:hover {
+      transform: translateY(-3px);
+
+      box-shadow:
+        0 9px 0 #0b0b0b,
+        0 0 35px rgba(179,148,92,0.35);
+
+      background: linear-gradient(145deg, #55452a, #211a10);
+    }
+
+    .open-button:active {
+      transform: translateY(4px);
+
+      box-shadow:
+        0 2px 0 #0b0b0b,
+        0 0 20px rgba(179,148,92,0.2);
+    }
+
+    /* История */
+    .story {
+      max-width: 760px;
+      margin: 35px auto 0;
+
+      padding: 30px;
+
+      background:
+        linear-gradient(
+          rgba(24, 21, 16, 0.96),
+          rgba(18, 16, 12, 0.96)
+        );
+
+      border: 1px solid #8d7345;
+      border-radius: 6px;
+
+      text-align: left;
+
+      box-shadow:
+        0 0 30px rgba(0,0,0,0.65),
+        inset 0 0 25px rgba(179,148,92,0.04);
+
+      opacity: 0;
+      transform: translateY(-15px) scale(0.98);
+
+      max-height: 0;
+      overflow: hidden;
+
+      transition:
+        opacity 0.6s ease,
+        transform 0.6s ease,
+        max-height 0.8s ease;
+    }
+
+    .story.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      max-height: 1000px;
+    }
+
+    .story p {
+      margin: 0 0 20px;
+      font-size: 19px;
+      line-height: 1.8;
+    }
+
+    .story p:last-child {
+      margin-bottom: 0;
+    }
+
+    .story::before {
+      content: "✦";
+      display: block;
+      text-align: center;
+      color: #b3945c;
+      font-size: 25px;
+      margin-bottom: 20px;
+    }
+
+    .footer {
+      margin-top: 35px;
+      color: #716b60;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .castle {
+        padding: 30px 10px;
+      }
+
+      .shield {
+        width: 80px;
+        height: 95px;
+        font-size: 38px;
+      }
+
+      .story {
+        padding: 22px;
+      }
+
+      .story p {
+        font-size: 17px;
+        line-height: 1.7;
+      }
+
+      .open-button {
+        min-width: 210px;
+        padding: 16px 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="castle">
+
+    <div class="shield">⚔️</div>
+
+    <div class="ornament">— ✦ —</div>
+
+    <h1>Три храбрых рыцаря</h1>
+
+    <div class="subtitle">
+      Легенда только начинается...
+    </div>
+
+    <button class="open-button" onclick="openStory()">
+      ⚔ ОТКРЫТЬ ИСТОРИЮ ⚔
+    </button>
+
+    <section id="story" class="story">
+
+      <p>
+        Было три храбрых рыцаря — Александр Ворчащий,
+        Назар Хихикающий и Наджаф Тусующийся.
+      </p>
+
+      <p>
+        Каждый день рыцари храбро сражались,
+        побеждая врагов.
+      </p>
+
+      <p>
+        А после сражений они возвращались в свои покои
+        и отправлялись отдыхать.
+      </p>
+
+      <p>
+        Но однажды, открыв глаза после хорошего сна,
+        рыцари увидели перед собой задание, которое
+        поодиночке им было не решить — только вместе.
+      </p>
+
+      <p>
+        Поэтому собрались рыцари и стали гадать,
+        куда же им держать путь.
+      </p>
+
+    </section>
+
+    <div class="footer">
+      ✦ Продолжение следует... ✦
+    </div>
+
+  </main>
+
+  <script>
+    function openStory() {
+      const story = document.getElementById("story");
+      const button = document.querySelector(".open-button");
+
+      story.classList.toggle("show");
+
+      if (story.classList.contains("show")) {
+        button.innerHTML = "⚔ ЗАКРЫТЬ ИСТОРИЮ ⚔";
+      } else {
+        button.innerHTML = "⚔ ОТКРЫТЬ ИСТОРИЮ ⚔";
+      }
+    }
+  </script>
+
+</body>
+</html>
+```
